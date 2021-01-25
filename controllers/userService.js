@@ -3,9 +3,9 @@ const userDAO = require('../models/users')
 const userValidate = (req, res) => {
     userDAO.findByUsername(req.params.name, data =>{
         try {
-            if (data.isNull()) throw new Err("Usuario disponible")
+            if (!data) throw new Err("Usuario disponible")
             res.send({
-                status: true, message: 'Usuario existente' })
+                status: true, message: 'Usuario ocupado' })
         }
         catch(Err) {
             res.send({
